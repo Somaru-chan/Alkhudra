@@ -83,7 +83,6 @@ class _AddBranchesPageState extends State<AddBranchesPage> {
                   obscTxt: false,
                   lbTxt: LocaleKeys.ksa.tr(),
                   enabled: false),
-    
               Container(
                   height: ButtonsDesign.buttonsHeight,
                   margin: EdgeInsets.all(20),

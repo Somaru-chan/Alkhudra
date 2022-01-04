@@ -29,6 +29,10 @@ class _LanguagePageState extends State<LanguagePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+    double scWidth = size.width;
+    double scHeight = size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomColors().backgroundColor,
@@ -42,7 +46,7 @@ class _LanguagePageState extends State<LanguagePage> {
               height: 60,
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: scWidth*0.12, right: scWidth*0.12),
               child: MaterialButton(
                 onPressed: () {
                   onLanguageButtonPressed(context,'ar');
@@ -54,10 +58,10 @@ class _LanguagePageState extends State<LanguagePage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: scHeight*0.03,
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: scWidth*0.12, right: scWidth*0.12),
               child: MaterialButton(
                 onPressed: () {
                   onLanguageButtonPressed(context,'en');
