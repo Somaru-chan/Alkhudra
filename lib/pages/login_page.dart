@@ -149,9 +149,9 @@ class _LogInPageState extends State<LogInPage> {
                       margin: EdgeInsets.only(left: 50, right: 50),
                       child: MaterialButton(
                         onPressed: () {
-                          if (isBtnEnabled) logIn();
-                          // Navigator.push(context, MaterialPageRoute(
-                          //   builder: (context) => HomePage()));
+                          // if (isBtnEnabled) logIn();
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => HomePage(isHasBranch: isHasBranches,)));
                         },
                         shape: StadiumBorder(),
                         child: ButtonsDesign.buttonsText(LocaleKeys.log_in.tr(),

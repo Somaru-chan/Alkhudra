@@ -75,6 +75,11 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+    double scWidth = size.width; 
+    double scHeight = size.height;
+
     return Material(
       child: SafeArea(
         child: Container(
@@ -95,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20,),
               //image slideshow
               Container(
-                width: MediaQuery.of(context).size.width*0.8,
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
@@ -123,6 +128,68 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+              ),
+              SizedBox(height: 10,), 
+              Container(
+                width: scWidth*15,
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Text(LocaleKeys.categories.tr(), 
+                style: TextStyle(
+                  color: CustomColors().darkBlueColor,
+                  fontSize: 22, 
+                  fontWeight: FontWeight.w700,
+                ),),
+              ),
+              SizedBox(height: 10,),
+              Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/fruitsnveg.png'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Container(
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/fruits.png'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Container(
+                      margin: EdgeInsets.only(left: 15, right: 15),
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('images/veg.png'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              Container(
+                width: scWidth*15,
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Text(LocaleKeys.trending_deals.tr(), 
+                style: TextStyle(
+                  color: CustomColors().darkBlueColor,
+                  fontSize: 22, 
+                  fontWeight: FontWeight.w700,
+                ),),
               ),
             ],
           ),

@@ -41,18 +41,25 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController commercialNoController = TextEditingController();
   bool isBtnEnabled = true;
 
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        //todo:
-        /********
-         *
-         * design problems:
-         * height of card  , width of main column,place of btn
-         * *********/
-        backgroundColor: CustomColors().backgroundColor,
-        body: SingleChildScrollView(
+
+  Size size = MediaQuery.of(context).size;
+
+  double scWidth = MediaQuery.of(context).size.width; 
+  double scHeight = MediaQuery.of(context).size.height; 
+
+    return Scaffold(
+      //todo:
+      /********
+       *
+       * design problems:
+       * height of card  , width of main column,place of btn
+       * *********/
+      backgroundColor: CustomColors().backgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Container(
@@ -69,15 +76,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 50,
               ),
               Positioned(
-                top: 250,
-                right: 50,
-                left: 50,
+                top: scHeight*0.33,
+                right: scWidth*0.13,
+                left: scWidth*0.13,
                 child: Container(
                   // margin: EdgeInsets.only(top: 250, left: 40, right: 30),
                   width: 300,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                      //TODO: add helpers for textfields
                       TextFieldDesign.textFieldStyle(
                         context: context,
                         verMarg: 5,
@@ -210,7 +218,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 LocaleKeys.continue_btn.tr(),
                                 CustomColors().primaryWhiteColor),
                             color: CustomColors().primaryGreenColor,
-                          ))
+                          )),
+                          // SizedBox(height: 10,),
                     ],
                   ),
                 ),

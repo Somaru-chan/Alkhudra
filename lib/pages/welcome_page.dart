@@ -19,6 +19,11 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+    double scWidth = size.width;
+    double scHeight = size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomColors().backgroundColor,
@@ -32,7 +37,7 @@ class _WelcomePageState extends State<WelcomePage> {
               height: 60,
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: scWidth*0.12, right: scWidth*0.12),
               child: MaterialButton(
                 onPressed: () {
                   onButtonPressed(signupRoute);
@@ -47,7 +52,7 @@ class _WelcomePageState extends State<WelcomePage> {
               height: 20,
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: scWidth*0.12, right: scWidth*0.12),
               child: MaterialButton(
                 onPressed: () {
                   onButtonPressed(loginRoute);
