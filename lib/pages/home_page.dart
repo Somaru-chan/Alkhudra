@@ -82,116 +82,118 @@ class _HomePageState extends State<HomePage> {
 
     return Material(
       child: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          color: CustomColors().backgroundColor,
-          child: Column(
-            children: [
-              //greeting user
-              Container( 
-                child: greeting(context),
-              ),
-              SizedBox(height: 10,),
-              //row of: menu bar + search bar + search button
-              Container(
-                child: searchBar(context, searchController),
-              ),
-              SizedBox(height: 20,),
-              //image slideshow
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height/4,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height,
+            color: CustomColors().backgroundColor,
+            child: Column(
+              children: [
+                //greeting user
+                Container( 
+                  child: greeting(context),
                 ),
-                child: Center(
-                  //Image slideshow
-                  //could replace images with different urls in imgList
-                  child: Stack(
+                SizedBox(height: 10,),
+                //row of: menu bar + search bar + search button
+                Container(
+                  child: searchBar(context, searchController),
+                ),
+                SizedBox(height: 20,),
+                //image slideshow
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height/4,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Center(
+                    //Image slideshow
+                    //could replace images with different urls in imgList
+                    child: Stack(
+                      children: [
+                        CarouselSlider.builder(
+                          //number of images
+                          itemCount: imgList.length, 
+                          itemBuilder: (context, index, realIndex) {
+                            final urlImage = imgList[index];
+                            return buildImg(urlImage, index);
+                          }, 
+                          options: CarouselOptions(
+                            // pageSnapping: false,
+                            // enableInfiniteScroll: false,
+                            height: 200,
+                            autoPlay: true,
+                            // enlargeCenterPage: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,), 
+                Container(
+                  width: scWidth*15,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Text(LocaleKeys.categories.tr(), 
+                  style: TextStyle(
+                    color: CustomColors().darkBlueColor,
+                    fontSize: 22, 
+                    fontWeight: FontWeight.w700,
+                  ),),
+                ),
+                SizedBox(height: 10,),
+                Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CarouselSlider.builder(
-                        //number of images
-                        itemCount: imgList.length, 
-                        itemBuilder: (context, index, realIndex) {
-                          final urlImage = imgList[index];
-                          return buildImg(urlImage, index);
-                        }, 
-                        options: CarouselOptions(
-                          // pageSnapping: false,
-                          // enableInfiniteScroll: false,
-                          height: 200,
-                          autoPlay: true,
-                          // enlargeCenterPage: true,
+                      Container(
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/fruitsnveg.png'),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Container(
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/fruits.png'),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Container(
+                        margin: EdgeInsets.only(left: 15, right: 15),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('images/veg.png'),
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 10,), 
-              Container(
-                width: scWidth*15,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Text(LocaleKeys.categories.tr(), 
-                style: TextStyle(
-                  color: CustomColors().darkBlueColor,
-                  fontSize: 22, 
-                  fontWeight: FontWeight.w700,
-                ),),
-              ),
-              SizedBox(height: 10,),
-              Center(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 15, right: 15),
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/fruitsnveg.png'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.only(left: 15, right: 15),
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/fruits.png'),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.only(left: 15, right: 15),
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/veg.png'),
-                        ),
-                      ),
-                    ),
-                  ],
+                SizedBox(height: 10,),
+                Container(
+                  width: scWidth*15,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Text(LocaleKeys.trending_deals.tr(), 
+                  style: TextStyle(
+                    color: CustomColors().darkBlueColor,
+                    fontSize: 22, 
+                    fontWeight: FontWeight.w700,
+                  ),),
                 ),
-              ),
-              SizedBox(height: 10,),
-              Container(
-                width: scWidth*15,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Text(LocaleKeys.trending_deals.tr(), 
-                style: TextStyle(
-                  color: CustomColors().darkBlueColor,
-                  fontSize: 22, 
-                  fontWeight: FontWeight.w700,
-                ),),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
