@@ -17,4 +17,5 @@ class CustomColors {
   Color likeColor = Color.fromRGBO(255, 46, 108, 1);
   Color unlikeColor = Color.fromRGBO(136, 125, 125, 1);
   Color blackColor = Color.fromRGBO(34, 41, 46, 1);
+  Color redColor = Colors.red;
 }

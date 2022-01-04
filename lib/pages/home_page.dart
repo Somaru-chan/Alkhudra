@@ -1,20 +1,67 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:companies_alkhudra/Constant/locale_keys.dart';
 import 'package:companies_alkhudra/designs/greeting_text.dart';
 import 'package:companies_alkhudra/designs/search_bar.dart';
+import 'package:companies_alkhudra/dialogs/two_btns_dialog.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'add_branches_page.dart';
+
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final bool isHasBranch;
+  const HomePage({Key? key, required this.isHasBranch}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  //------------------------
+
+   void showAddBranchDialog() async {
+     await Future.delayed(Duration(milliseconds: 50));
+     List<Function()> actions = [
+       () {
+         addBranchesPage();
+         //   Navigator.pop(context);
+       },
+       () {
+         Navigator.pop(context);
+       }
+     ];
+     showDialog<String>(
+         context: context,
+         builder: (BuildContext context) => showTwoBtnDialog(
+             context,
+             LocaleKeys.add_branch.tr(),
+             LocaleKeys.add_branch_note_dialog.tr(),
+             LocaleKeys.add_branch_now.tr(),
+             LocaleKeys.later.tr(),
+             actions));
+   }
+ ////---------------------------
+   void addBranchesPage() {
+     Navigator.pop(context);
+     Navigator.push(context, MaterialPageRoute(builder: (context) {
+       return AddBranchesPage();
+     }));
+   }
+   ////---------------------------
+   @override
+   void initState() {
+     super.initState();
+
+     //todo: show after calling api
+     if (widget.isHasBranch == false) {
+       showAddBranchDialog();
+     }
+   }
 
   final imgList = [
     'https://images.unsplash.com/photo-1575218823251-f9d243b6f720?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dmVnZXRhYmxlc3xlbnwwfDB8MHx8&auto=format&fit=crop&w=700&q=60',

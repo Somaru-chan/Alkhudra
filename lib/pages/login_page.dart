@@ -41,6 +41,7 @@ class _LogInPageState extends State<LogInPage> {
   final TextEditingController passController = TextEditingController();
   bool isBtnEnabled = true;
   bool isForgetPassBtnEnabled = true;
+  static bool isHasBranches = false;
   
 
   @override
@@ -148,9 +149,9 @@ class _LogInPageState extends State<LogInPage> {
                       margin: EdgeInsets.only(left: 50, right: 50),
                       child: MaterialButton(
                         onPressed: () {
-                          // if (isBtnEnabled) logIn();
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => HomePage()));
+                          if (isBtnEnabled) logIn();
+                          // Navigator.push(context, MaterialPageRoute(
+                          //   builder: (context) => HomePage()));
                         },
                         shape: StadiumBorder(),
                         child: ButtonsDesign.buttonsText(LocaleKeys.log_in.tr(),
@@ -175,71 +176,55 @@ class _LogInPageState extends State<LogInPage> {
             showMessageDialog(context, LocaleKeys.error.tr(), txt, noPage));
   }
 
-  void logIn() {
-    if (emailController.value.text == '') {
-      showErrorDialog(LocaleKeys.email_required.tr());
-      return;
-    }
+  ////---------------------------		
+  void logIn() {		
+    if (emailController.value.text == '') {		
+      showErrorDialog(LocaleKeys.email_required.tr());		
+      return;		
+    }		
+    if (isValidEmail(emailController.value.text) == false) {		
+      showErrorDialog(LocaleKeys.email_not_valid.tr());		
+      return;		
+    }		
+    if (passController.value.text == '') {		
+      showErrorDialog(LocaleKeys.pass_required.tr());		
+      return;		
+    }		
+    isBtnEnabled = false;		
+    print('continue log in ');		
+    //----------show progress----------------		
+    showLoaderDialog(context);		
+    //----------start api ----------------		
+    RegisterRepository registerRepository = RegisterRepository();		
+    registerRepository		
+        .loginUser(emailController.text, passController.text)		
+        .then((result) async {		
+      //-------- fail response ---------		
+      //todo: edit after adjustments		
+      if (result == null || result.apiStatus.code != ApiResponseType.OK.code) {		
+        /* if (result.apiStatus.code == ApiResponseType.BadRequest)*/		
+        Navigator.pop(context);		
+        showErrorDialog(result.message);		
+        return;		
+      }		
+      //-------- success response ---------		
+      LoginResponseModel model = result.result;		
+      print(model.user.toString());		
+      User user = model.user!;		
+      // if(user != null) {		
+      // print(model.user.get);		
+      PreferencesHelper.setUserID(user.id!);		
+      PreferencesHelper.getUserID.then((value) => print('user id : $value'));		
+      PreferencesHelper.setUserToken(model.token);		
+      PreferencesHelper.getUserToken.then((value) => print('token : $value'));		
+      PreferencesHelper.setUser(user);		
+      isHasBranches = user.branches!.isNotEmpty;		
+      Navigator.pop(context);		
+      directToHomePage();		
+      //todo: check user status and show message if not registered		
+    });		
+  }		
 
-    if (isValidEmail(emailController.value.text) == false) {
-      showErrorDialog(LocaleKeys.email_not_valid.tr());
-      return;
-    }
-
-    if (passController.value.text == '') {
-      showErrorDialog(LocaleKeys.pass_required.tr());
-      return;
-    }
-
-    isBtnEnabled = false;
-
-    print('continue log in ');
-
-    //----------show progress----------------
-
-    showLoaderDialog(context);
-    //----------start api ----------------
-    RegisterRepository registerRepository = RegisterRepository();
-    registerRepository
-        .loginUser(emailController.text, passController.text)
-        .then((result) async {
-      //-------- fail response ---------
-
-      //todo: edit after adjustments
-      if (result == null || result.apiStatus.code != ApiResponseType.OK.code) {
-        /* if (result.apiStatus.code == ApiResponseType.BadRequest)*/
-        Navigator.pop(context);
-        showErrorDialog(result.message);
-        return;
-      }
-
-      //-------- success response ---------
-      LoginResponseModel model = result.result;
-      print(model.user.toString());
-      User user = model.user!;
-      // if(user != null) {
-      // print(model.user.get);
-
-      PreferencesHelper.setUserID(user.id!);
-      PreferencesHelper.getUserID.then((value) => print('user id : $value'));
-
-      PreferencesHelper.setUserToken(model.token);
-      PreferencesHelper.getUserToken.then((value) => print('token : $value'));
-
-      PreferencesHelper.setUser(user);
-      bool isHasBranches = user.branches!.isEmpty;
-      Navigator.pop(context);
-
-      if (isHasBranches)
-        addBranchesPage();
-      else
-        directToHomePage();
-
-      // }else showErrorDialog(result.message);
-
-      //todo: check user status and show message if not registered
-    });
-  }
 ////---------------------------
 
   Widget showEnterEmailDialog(BuildContext context) {
@@ -305,20 +290,14 @@ class _LogInPageState extends State<LogInPage> {
   }
 ////---------------------------
 
+////---------------------------
   void directToHomePage() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return HomePage();
+      return HomePage(isHasBranch: isHasBranches);
     }));
   }
-////---------------------------
 
-  void addBranchesPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return AddBranchesPage();
-    }));
-  }
   ////---------------------------
-
   void forgetPasswordProcess(String userEmail) {
     if (userEmail != '') {
       isForgetPassBtnEnabled = false;
@@ -364,6 +343,6 @@ class _LogInPageState extends State<LogInPage> {
 
         }
       });*/
+      } 
     }
   }
-}

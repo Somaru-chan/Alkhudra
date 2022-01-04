@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
 import 'package:companies_alkhudra/router/custom_route.dart';
 import 'package:companies_alkhudra/router/route_constants.dart';
+import 'package:flutter/services.dart';
 
 import 'Constant/pref_cont.dart';
 import 'helpers/pref_manager.dart';
@@ -29,6 +30,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Localization Demo",
