@@ -217,12 +217,12 @@ class _HomePageState extends State<HomePage> {
                   thickness: 5,
                   color: CustomColors().grayColor,
                 ),
-                productCard(context, 8, 'Melons'),
+                productCard(context, 0, 'Melons'),
                 Divider(
                   thickness: 5,
                   color: CustomColors().grayColor,
                 ),
-                productCard(context, 25, 'Carrots'),
+                productCard(context, 0, 'Carrots'),
                 Divider(
                   thickness: 5,
                   color: CustomColors().grayColor,

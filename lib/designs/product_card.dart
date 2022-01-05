@@ -10,6 +10,7 @@ Widget productCard(context, count, proName) {
       children: [
         //left side of card
         Container(
+          margin: EdgeInsets.only(bottom: 5),
           width: MediaQuery.of(context).size.width*0.3,
           height: MediaQuery.of(context).size.height*0.2,
           decoration: BoxDecoration(
