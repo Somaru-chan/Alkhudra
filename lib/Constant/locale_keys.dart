@@ -66,5 +66,6 @@ abstract class LocaleKeys {
   static const later = "later";
   static const categories = "Categories";
   static const trending_deals = "Trending Deals";
+  static const add_btn = "ADD";
 
 }

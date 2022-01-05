@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:companies_alkhudra/Constant/locale_keys.dart';
 import 'package:companies_alkhudra/designs/greeting_text.dart';
+import 'package:companies_alkhudra/designs/product_card.dart';
 import 'package:companies_alkhudra/designs/search_bar.dart';
 import 'package:companies_alkhudra/dialogs/two_btns_dialog.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
@@ -8,6 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'dart:math' as math;
 
 import 'add_branches_page.dart';
 
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height,
+            // height: MediaQuery.of(context).size.height,
             color: CustomColors().backgroundColor,
             child: Column(
               children: [
@@ -182,15 +184,48 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 10,),
-                Container(
-                  width: scWidth*15,
-                  padding: EdgeInsets.only(left: 20, right: 20),
-                  child: Text(LocaleKeys.trending_deals.tr(), 
-                  style: TextStyle(
-                    color: CustomColors().darkBlueColor,
-                    fontSize: 22, 
-                    fontWeight: FontWeight.w700,
-                  ),),
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: scWidth*0.4,
+                      margin: EdgeInsets.only(left: 20, right: 20),
+                      child: Text(LocaleKeys.trending_deals.tr(), 
+                      style: TextStyle(
+                        color: CustomColors().darkBlueColor,
+                        fontSize: 22, 
+                        fontWeight: FontWeight.w700,
+                      ),),
+                    ),
+                    SizedBox(width: scWidth*0.35,),
+                    Container(
+                      child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(math.pi),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back_ios,
+                          color: CustomColors().primaryGreenColor,),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                productCard(context, 0, 'Avocado'),
+                Divider(
+                  thickness: 5,
+                  color: CustomColors().grayColor,
+                ),
+                productCard(context, 8, 'Melons'),
+                Divider(
+                  thickness: 5,
+                  color: CustomColors().grayColor,
+                ),
+                productCard(context, 25, 'Carrots'),
+                Divider(
+                  thickness: 5,
+                  color: CustomColors().grayColor,
                 ),
               ],
             ),
