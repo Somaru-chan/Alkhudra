@@ -41,7 +41,7 @@ final TextEditingController phoneController = TextEditingController();
                 children: [
                   Positioned.fill(
                     left: 180,
-                    child: Image.asset('assets/images/grapevector.png'),
+                    child: Image.asset('images/grapevector.png'),
                   ),
                 ],
               ),
@@ -57,6 +57,7 @@ final TextEditingController phoneController = TextEditingController();
             ),
             SliverToBoxAdapter(
               child: Container(
+                alignment: Alignment.topCenter,
                 // margin: EdgeInsets.only(top: 100),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
@@ -65,31 +66,35 @@ final TextEditingController phoneController = TextEditingController();
                   children: [
                     TextFieldDesign.textFieldStyle(
                       context: context,
-                      verMarg: 0,
+                      verMarg: 30,
                       horMarg: 20,
                       kbType: TextInputType.name,
                       lbTxt: LocaleKeys.owner_name.tr(),
-                    ),
-                    TextFieldDesign.textFieldStyle(
-                      context: context,
-                      verMarg: 30,
-                      horMarg: 20,
-                      kbType: TextInputType.name,
-                      lbTxt: LocaleKeys.comp_name.tr(),
+                      obscTxt: false,
                     ),
                     TextFieldDesign.textFieldStyle(
                       context: context,
                       verMarg: 0,
                       horMarg: 20,
                       kbType: TextInputType.name,
-                      lbTxt: LocaleKeys.change_email.tr(),
+                      lbTxt: LocaleKeys.comp_name.tr(),
+                      obscTxt: false,
                     ),
                     TextFieldDesign.textFieldStyle(
                       context: context,
                       verMarg: 30,
                       horMarg: 20,
                       kbType: TextInputType.name,
+                      lbTxt: LocaleKeys.change_email.tr(),
+                      obscTxt: false,
+                    ),
+                    TextFieldDesign.textFieldStyle(
+                      context: context,
+                      verMarg: 0,
+                      horMarg: 20,
+                      kbType: TextInputType.name,
                       lbTxt: LocaleKeys.change_phone.tr(),
+                      obscTxt: false,
                     ),
                     TextFieldDesign.textFieldStyle(
                       context: context,
@@ -97,6 +102,7 @@ final TextEditingController phoneController = TextEditingController();
                       horMarg: 20,
                       kbType: TextInputType.name,
                       lbTxt: LocaleKeys.password.tr(),
+                      obscTxt: true,
                     ),
                     SizedBox(height: 50,),
                     Container(
@@ -147,7 +153,7 @@ final TextEditingController phoneController = TextEditingController();
                       height: 100,
                       margin: EdgeInsets.only(top: 40),
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/male_avatar.png'),
+                        backgroundImage: AssetImage('images/male_avatar.png'),
                       ),
                     ),
                     SizedBox(height: 20,),

@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:companies_alkhudra/Constant/locale_keys.dart';
+import 'package:companies_alkhudra/designs/drawer_design.dart';
 import 'package:companies_alkhudra/designs/greeting_text.dart';
 import 'package:companies_alkhudra/designs/product_card.dart';
 import 'package:companies_alkhudra/designs/search_bar.dart';
+import 'package:companies_alkhudra/designs/text_field_design.dart';
 import 'package:companies_alkhudra/dialogs/two_btns_dialog.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,6 +14,9 @@ import 'package:flutter/rendering.dart';
 import 'dart:math' as math;
 
 import 'add_branches_page.dart';
+import 'contact_us.dart';
+import 'edit_profile.dart';
+import 'language_setting.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -23,6 +28,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   //------------------------
 
@@ -84,6 +91,7 @@ class _HomePageState extends State<HomePage> {
 
     return SafeArea(
           child: Scaffold(
+            key: _scaffoldState,
             body: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 10,),
                   //row of: menu bar + search bar + search button
                   Container(
-                    child: searchBar(context, searchController),
+                    child: searchBar(searchController),
                   ),
                   SizedBox(height: 20,),
                   //image slideshow, commented till client requests
@@ -228,9 +236,223 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            drawer: drawerDesign(context),
+            //   drawer: Drawer(
+            //     child: ListView(
+            //     children: [
+            //       Container(
+            //         width: 100,
+            //         height: 300,
+            //         decoration: BoxDecoration(
+            //           color: CustomColors().primaryGreenColor,
+            //           borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(60),
+            //             bottomRight: Radius.circular(60),
+            //           ),
+            //         ),
+            //         child: Column(
+            //           children: [
+            //             Container(
+            //               width: 100,
+            //               height: 100,
+            //               margin: EdgeInsets.only(top: 40),
+            //               child: CircleAvatar(
+            //                 backgroundImage: AssetImage('images/male_avatar.png'),
+            //               ),
+            //             ),
+            //             SizedBox(height: 20,),
+            //             Container(
+            //               //TODO: replace with company variable from DB
+            //               child: Text('Company Name', style: TextStyle(
+            //                 color: CustomColors().primaryWhiteColor,
+            //                 fontSize: 21,
+            //                 fontWeight: FontWeight.w600,
+            //               ),),
+            //             ),
+            //             SizedBox(height: 10,),
+            //             Container(
+            //               //TODO: replace with email variable from DB
+            //               child: Text('company@email.com', style: TextStyle(
+            //                 color: CustomColors().primaryWhiteColor,
+            //                 fontSize: 15,
+            //                 fontWeight: FontWeight.w300,
+            //               ),),
+            //             ),
+            //             SizedBox(height: 20,),
+            //             GestureDetector(
+            //               onTap: () {
+            //                 Navigator.pop(context);
+            //                 Navigator.push(context, MaterialPageRoute(
+            //                   builder: (context) => EditProfile())
+            //                 );
+            //               },
+            //               child: Container(
+            //                 width: 120,
+            //                 height: 40,
+            //                 decoration: BoxDecoration(
+            //                   color: CustomColors().primaryWhiteColor,
+            //                   borderRadius: BorderRadius.circular(40),
+            //                 ),
+            //                 child: Center(child: Text(LocaleKeys.edit_profile.tr(),
+            //                 style: TextStyle(color: CustomColors().primaryGreenColor,
+            //                 fontWeight: FontWeight.w700),)),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       ListTile(
+            //         title: Row(
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           children: [
+            //             Container(
+            //               width: 40,
+            //               height: 40,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 color: CustomColors().languageBG
+            //               ),
+            //               child: Icon(Icons.language, color: CustomColors().language,),
+            //             ),
+            //             SizedBox(width: 10,),
+            //             Text(LocaleKeys.languages.tr(), style: TextStyle(
+            //               fontSize: 15,
+            //               fontWeight: FontWeight.w500,
+            //             ),),
+            //           ],
+            //         ),
+            //         onTap: () {
+            //           Navigator.pop(context);
+            //           Navigator.push(context, 
+            //           MaterialPageRoute(
+            //             builder: (context) => LanguageSetting()
+            //             ),
+            //           );
+            //         },
+            //       ),
+            //       Divider(
+            //         thickness: 2.5,
+            //       ),
+            //       ListTile(
+            //         title: Row(
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           children: [
+            //             Container(
+            //               width: 40,
+            //               height: 40,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 color: CustomColors().contactBG,
+            //               ),
+            //               child: Icon(Icons.verified_user_rounded, color: CustomColors().contact,),
+            //             ),
+            //             SizedBox(width: 10,),
+            //             Text(LocaleKeys.contact_us.tr(), style: TextStyle(
+            //               fontSize: 15,
+            //               fontWeight: FontWeight.w500,
+            //             ),),
+            //           ],
+            //         ),
+            //         onTap: () {
+            //           Navigator.pop(context);
+            //           Navigator.push(context, 
+            //           MaterialPageRoute(
+            //             builder: (context) => ContactUs()
+            //             ),
+            //           );
+            //         },
+            //       ),
+            //       Divider(
+            //         thickness: 2.5,
+            //       ),
+            //       ListTile(
+            //         title: Row(
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           children: [
+            //             Container(
+            //               width: 40,
+            //               height: 40,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 color: CustomColors().logOutBG
+            //               ),
+            //               child: Icon(Icons.logout, color: CustomColors().logOut,),
+            //             ),
+            //             SizedBox(width: 10,),
+            //             Text(LocaleKeys.log_out.tr(), style: TextStyle(
+            //               fontSize: 15,
+            //               fontWeight: FontWeight.w500,
+            //             ),),
+            //           ],
+            //         ),
+            //         onTap: () {
+            //           Navigator.pop(context);
+            //           Navigator.push(context, 
+            //           MaterialPageRoute(
+            //             builder: (context) => EditProfile()
+            //             ),
+            //           );
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
     );
   }
+
+  Widget searchBar(seController) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    child: Row(
+      // mainAxisAlignment: MainAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // SizedBox(width: 10,),
+
+        Container(
+          child: IconButton(
+            icon: Icon(Icons.menu_rounded,),
+            color: CustomColors().brownColor,
+            iconSize: 28,
+            onPressed: () {
+              _scaffoldState.currentState!.openDrawer();
+            },
+          ),
+        ),
+
+        // SizedBox(width: 5,),
+        Container(
+          margin: EdgeInsets.only(left: 5, right: 5),
+          width: MediaQuery.of(context).size.width/1.4,
+          child: TextFieldDesign.textFieldStyle(
+            context: context,
+            verMarg: 2,
+            horMarg: 0, 
+            controller: seController, 
+            kbType: TextInputType.text,
+            lbTxt: LocaleKeys.search_term.tr(),
+            obscTxt: false,
+          ),
+        ),
+        SizedBox(width: 5,),
+        GestureDetector(
+          child: Container(
+            padding: EdgeInsets.all(8.0),
+            width: MediaQuery.of(context).size.width*0.08,
+            height: MediaQuery.of(context).size.height*0.04,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/logo.png'),
+              ),
+            ),
+          ),
+          onTap: () {},
+        ),
+      ],
+    ),
+  );
+}
 
   // Widget buildImg(String urlImage, int index) {
   //   return ClipRRect(

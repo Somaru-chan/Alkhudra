@@ -43,7 +43,7 @@ final TextEditingController phoneController = TextEditingController();
                 children: [
                   Positioned.fill(
                     left: 180,
-                    child: Image.asset('assets/images/grapevector.png'),
+                    child: Image.asset('images/grapevector.png'),
                   ),
                 ],
               ),
@@ -91,7 +91,7 @@ final TextEditingController phoneController = TextEditingController();
                               height: 100,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/product_icon.png'),
+                                  image: AssetImage('images/product_icon.png'),
                                 ),
                               ),
                               child: Icon(Icons.phone, color: CustomColors().blackColor, size: 48,),
@@ -115,7 +115,7 @@ final TextEditingController phoneController = TextEditingController();
                               height: 100,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/product_icon.png'),
+                                  image: AssetImage('images/product_icon.png'),
                                 ),
                               ),
                               child: Icon(Icons.mail_outline, color: CustomColors().blackColor, size: 48,),
@@ -143,7 +143,7 @@ final TextEditingController phoneController = TextEditingController();
                               height: 100,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/product_icon.png'),
+                                  image: AssetImage('images/product_icon.png'),
                                 ),
                               ),
                               child: Icon(Icons.sms_outlined, color: CustomColors().blackColor, size: 48,),
@@ -167,7 +167,7 @@ final TextEditingController phoneController = TextEditingController();
                               height: 100,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage('assets/images/product_icon.png'),
+                                  image: AssetImage('images/product_icon.png'),
                                 ),
                               ),
                               child: Icon(Icons.fmd_good_sharp, color: CustomColors().blackColor, size: 48,),
@@ -210,7 +210,7 @@ final TextEditingController phoneController = TextEditingController();
                       height: 100,
                       margin: EdgeInsets.only(top: 40),
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/male_avatar.png'),
+                        backgroundImage: AssetImage('images/male_avatar.png'),
                       ),
                     ),
                     SizedBox(height: 20,),

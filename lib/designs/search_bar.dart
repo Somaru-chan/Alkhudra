@@ -1,4 +1,5 @@
 import 'package:companies_alkhudra/Constant/locale_keys.dart';
+import 'package:companies_alkhudra/designs/drawer_design.dart';
 import 'package:companies_alkhudra/designs/text_field_design.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
 import 'package:flutter/material.dart';
@@ -12,16 +13,18 @@ Widget searchBar(context, seController) {
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // SizedBox(width: 10,),
+
         Container(
           child: IconButton(
             icon: Icon(Icons.menu_rounded,),
             color: CustomColors().brownColor,
             iconSize: 28,
             onPressed: () {
-              // add custom drawer
+              
             },
           ),
         ),
+
         // SizedBox(width: 5,),
         Container(
           margin: EdgeInsets.only(left: 5, right: 5),
