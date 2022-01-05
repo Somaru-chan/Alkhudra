@@ -2,7 +2,7 @@ import 'package:companies_alkhudra/Constant/locale_keys.dart';
 import 'package:companies_alkhudra/resources/custom_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget productCard(context, count, proName) {
+Widget productCard(context, count, proName, proPrice) {
   int counter = count; 
   return Container(
     child: Row(
@@ -19,7 +19,7 @@ Widget productCard(context, count, proName) {
             ),
           ),
         ),
-        SizedBox(width: 5,),
+        SizedBox(width: 10,),
         //center of card
         Column(
           children: [
@@ -56,8 +56,10 @@ Widget productCard(context, count, proName) {
         SizedBox(width: 5,),
         Container(
           width: MediaQuery.of(context).size.width*0.3,
+          padding: EdgeInsets.only(right: 5, left: 5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 child: IconButton(
@@ -114,6 +116,15 @@ Widget productCard(context, count, proName) {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                padding: EdgeInsets.all(2),
+                child: Text('$proPrice SAR / Kg', 
+                style: TextStyle(
+                  color: CustomColors().primaryGreenColor,
+                  fontWeight: FontWeight.w400
+                ),),
               ),
             ],
           ),
