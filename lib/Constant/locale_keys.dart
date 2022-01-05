@@ -67,5 +67,14 @@ abstract class LocaleKeys {
   static const categories = "Categories";
   static const trending_deals = "Trending Deals";
   static const add_btn = "ADD";
-
+  static const edit_profile = 'EDIT PROFILE';
+  static const edit_profile_title = 'Edit Profile';
+  static const languages = 'Languages';
+  static const contact_us = 'Contact Us';
+  static const log_out = 'Log Out';
+  static const change_owner_name = 'Change Owner Name';
+  static const comp_name = 'Change Company Name';
+  static const change_email = 'Change Email';
+  static const change_phone = 'Change Phone Number';
+  static const save_changes = 'SAVE';
 }

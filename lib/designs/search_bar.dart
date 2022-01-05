@@ -17,7 +17,9 @@ Widget searchBar(context, seController) {
             icon: Icon(Icons.menu_rounded,),
             color: CustomColors().brownColor,
             iconSize: 28,
-            onPressed: () {},
+            onPressed: () {
+              // add custom drawer
+            },
           ),
         ),
         // SizedBox(width: 5,),

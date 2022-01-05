@@ -63,5 +63,16 @@
     "later": "Later",
     "Categories": "Categories",
     "Trending Deals" : "Trending Deals",
-    "ADD" : "ADD"
-  }
+    "ADD" : "ADD",
+    "Log Out" : "Log Out",
+    "Languages" : "Languages",
+    "Contact Us" : "Contact Us",
+    "EDIT PROFILE" : "EDIT PROFILE",
+    "Edit Profile" : "Edit Profile",
+    "Change Driver Name" : "Change Owner Name",
+    "Change Owner Name" : "Change Owner Name",
+    "Change Company Name" : "Change Company Name",
+    "Change Email" : "Change Email", 
+    "Change Phone Number" : "Change Phone Number",
+    "SAVE" : "SAVE"
+    }
